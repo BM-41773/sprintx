@@ -1,0 +1,492 @@
+﻿
+@model IEnumerable<fbfinal.Models.Friends>
+           @{ ViewBag.title = "Login2";
+              
+           }
+                                        
+    <!DOCTYPE HTML PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+    <html xmlns="http://www.w3.org/1999/xhtml">
+    <head id="Head1"   runat="server">
+        <title></title>
+        <!-- <link href="css/bootstrap.css" rel="stylesheet" type="text/css" />-->
+        <!-- <link rel="stylesheet" type="text/css" href="../../Content/css/bootstrap.css" />-->
+        <link href="~/content/stylesheet/StyleSheet2.css" rel="stylesheet" />
+        @*<link href="../../content/boostrap/bootstrap.css" rel="stylesheet" />*@
+        <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" />
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+        <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>`
+        <script type='text/javascript' src='https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>
+
+        <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+        <script src="http://ajax.aspnetcdn.com/ajax/jquery.ui/1.8.9/jquery-ui.js" type="text/javascript"></script>
+        <link href="http://ajax.aspnetcdn.com/ajax/jquery.ui/1.8.9/themes/blitzer/jquery-ui.css"  rel="stylesheet" type="text/css" />
+        <link href="~/content/StyleSheet1.css" rel="stylesheet" />
+        <script src="~/content/script/JavaScript1.js"></script>
+        <script src="~/content/script/Aprnd2.js"></script>
+        <script src="~/content/script/JavaScript3.js"></script>
+        <script src="~/content/script/feeds.js"></script>
+        @*<script src="~/content/script/adds.js"></script>*@
+        @*<script src="~/content/script/vedio.js"></script>*@
+        @*<script src="~/content/script/JavaScript4.js"></script>*@
+        @*<script src="~/content/script/j7.js"></script>*@
+        @*<script src="~/content/script/addingimg.js"></script>*@
+        @*<script src="~/content/script/JavaScript5.js"></script>*@
+        @*<script src="~/content/script/image.js"></script>*@
+        @*<script src="~/content/script/JavaScript6.js"></script>*@
+        @*<script src="~/content/script/Script6.js"></script>*@
+        <script src="~/content/script/IMG.js"></script>
+        <script src="~/content/script/UOLOd.js"></script>
+        <script src="~/content/script/JavaScript8.js"></script>
+       
+        <script src="~/content/script/JavaScript9.js"></script>
+        <script src="~/content/script/JavaScript14.js"></script>
+     
+        <script src="~/content/script/JavaScript15.js"></script>
+     
+        <script src="~/content/script/JavaScript17.js"></script>
+      
+       
+        <script src="~/content/script/JavaScript18.js"></script>
+        
+        <link href="~/content/stylesheet/StyleSheet3.css" rel="stylesheet" />
+      
+        
+      
+       
+        <script language="javascript" type="text/javascript">
+            $(document).ready(function () {
+                $("#lnk").hover(function () {
+                    var status = $("#Sts").val(); {
+                        var status = $("#Sts").val();
+                     // alert(status);
+                        {
+                            if (status == 1) {
+                                $("#Link_adv").empty();
+                              return  ($("#Link_adv").append("advertieser approvel pending"));
+                            }
+                            else {
+                                $("#Link_adv").empty();
+                                $("#Link_adv").append("Apply to advertiesment");
+
+                            }
+                        }
+
+                    }
+
+                })
+            });
+            $(document).ready(function () {
+                $("#srh").click(function () {
+  
+                    var searchedname = $("#X_Firstname1").val();
+                    var serchedname1 = $("#X_mainloginid").val();
+                    var a = parseInt(serchedname1);
+                    console.log($("#X_Firstname1").val())
+                    $.ajax({
+                        type: 'GET',
+                        dataType: 'Json',
+                        url: 'Home/serchfrnd',
+                        data: { name: searchedname },
+                        success: function (data) {
+                            alert("ssss");
+                            //  $(".fint").empty();
+                            $(".fint").empty();
+                            //console.log(data[0]);
+                            for (var x = 0; x < data.length; x++) {
+                                if ((data[x].relation == 0) && (a == data[x].sender)) {
+                                    console.log("ID: " + data[x].LogginId + " name: " + data[x].Firstname + " picture: " + data[x].Profilepic);
+                                    var html = '<img src="' + data[x].FCProfilepic + '"style="height:35px;" /> <label>' + data[x].FCFirstname + '</label><label>' + data[x].FCSurname + '</label><input type="button" id="X_frind" style="margin-left:90px; margin-top:-5px " data-id="' + data[x].LogginId + '"  value="Request send"/><input type="hidden"  value="' + serchedname1 + '"style= margin-top:-1px ;height:28px;/> <br> <br><hr>';
+                                }
+                                else {
+                                    console.log("ID: " + data[x].LogginId + " name: " + data[x].Firstname + " picture: " + data[x].Profilepic);
+                                    var html = '<img src="' + data[x].Profilepic + '"style="height:35px;" /> <label>' + data[x].Firstname + '</label><label>' + data[x].Surname + '</label><input type="button" id="X_frind" style="margin-left:90px; margin-top:-5px " data-id="' + data[x].LogginId + '"  value="Add Friend"/><input type="hidden"  value="' + serchedname1 + '"style= margin-top:-1px ;height:28px;/>  <br> <br><hr>';
+                                }
+                                //  $("#sch").hide();
+                                $(".fint").append(html);
+
+
+
+                            }
+                        }
+                    })
+                });
+            });
+            $(document).ready(function () {
+                $("#srh").click(function () {
+                    var searchedname = $("#X_Firstname1").val();
+                    var serchedname1 = $("#X_mainloginid").val();
+                    var a = parseInt(serchedname1);
+                    console.log($("#X_Firstname1").val())
+                    $.ajax({
+                        type: 'GET',
+                        dataType: 'Json',
+                        url: 'Home/serchfrnd',
+                        data: { name: searchedname },
+                        success: function (data) {
+                            //  $(".fint").empty();
+                            $(".fint").empty();
+                            //console.log(data[0]);
+                            for (var x = 0; x < data.length; x++) {
+                                if ((data[x].relation == 0) && (data[x].sender == a)) {
+                                    console.log("ID: " + data[x].LogginId + " name: " + data[x].Firstname + " picture: " + data[x].Profilepic);
+                                    var html = '<img src="' + data[x].FCProfilepic + '"style="height:35px;" /> <label>' + data[x].FCFirstname + '</label><label>' + data[x].FCSurname + '</label><input type="button" id="X_frind" style="margin-left:90px; margin-top:-5px " data-id="' + data[x].LogginId + '"  value="Request send"/><input type="hidden"  value="' + serchedname1 + '"style= margin-top:-1px ;height:28px;/> <br> <br><hr>';
+                                }
+                                else {
+                                    console.log("ID: " + data[x].LogginId + " name: " + data[x].Firstname + " picture: " + data[x].Profilepic);
+                                    var html = '<img src="' + data[x].Profilepic + '"style="height:35px;" /> <label>' + data[x].Firstname + '</label><label>' + data[x].Surname + '</label><input type="button" id="X_frind" style="margin-left:90px; margin-top:-5px " data-id="' + data[x].LogginId + '"  value="Add Friend"/><input type="hidden"  value="' + serchedname1 + '"style= margin-top:-1px ;height:28px;/>  <br> <br><hr>';
+                                }
+                                $("#sch").hide();
+                                $(".fint").append(html);
+
+
+
+                            }
+                        }
+                    })
+                });
+                $(document).on('click', '#X_frind', function () {
+                    var reciverid = $(this).data("id");
+                    var senderid = $("#X_mainloginid").val();
+                    $(this).prop('value', 'request sent');
+                    $.ajax({
+                        type: 'GET',
+                        dataType: 'Json',
+                        url: 'Home/friend',
+                        data: { X_reciverid: reciverid, X_senderid: senderid },
+                        success: function (data) {
+                            ////console.log(data[0]);
+                            //for (var x = 0; x < data.length; x++) {
+                            //    console.log("ID: " + data[x].LogginId + " name: " + data[x].Firstname + " picture: " + data[x].Profilepic);
+                            //    var html = '<img src="' + data[x].Profilepic + '"style="height:35px;" /> <label>' + data[x].Firstname + '</label><label>' + data[x].Surname + '</label><input type="button" id="X_frind" style="margin-left:90px; margin-top:-5px " data-id="' + data[x].LogginId + '"  value="Add Friend"/><input type="hidden"  value="' + serchedname1 + '"style= margin-top:-1px ;height:28px;/> <br> <br><hr>';
+                            //    $(".fint").append(html);
+                            //}
+                            //$("#sch").hide();
+                        }
+
+                    })
+
+                })
+            });
+            $(document).ready(function () {
+                $("#m_pic").click(function () {
+                    // var serchedname1 = $("#X_mainloginid").val();
+                    //  var a = parseInt(serchedname1);
+                    //  alert(serchedname1);
+                    $.ajax({
+                        type: 'GET',
+                        dataType: 'Json',
+                        url: 'Home/approve',
+                        data: { X_receiverid: serchedname1 },
+                        success: function (data) {
+
+                            for (var x = 0; x < data.length; x++) {
+                                if (data[x].relation == 0) {
+                                    console.log("ID: " + data[x].LogginId + " name: " + data[x].FCFirstname + " picture: " + data[x].FCProfilepic);
+                                    var html = '<img src="' + data[x].Profilepic + '"style="height:35px;" /> <label>' + data[x].Firstname + '</label><label>' + data[x].Surname + '</label><input type="button" id="conformbtn" style="margin-left:90px; margin-top:-5px " data-id="' + data[x].LogginId + '"  value="Conform"/><input type="button" value="Delete Request" id="deletebtn"/><input type="hidden"  value="' + serchedname1 + '"style= margin-top:-1px ;height:28px;/> <br> <br><hr>';
+                                    $(".div1").append(html);
+                                }
+                            }
+
+                        }
+
+                    })
+
+
+                });
+            });
+            $(document).on('click', '#conformbtn', function () {
+                var reciverid = $("#X_mainloginid").val();
+                var senderid = $(this).data("id");
+                $(this).prop('value', 'Friend');
+                $.ajax({
+                    type: 'GET',
+                    dataType: 'Json',
+                    url: 'Home/srch',
+                    data: { X_reciverid: reciverid, X_senderid: senderid },
+                    success: function (data) {
+                        $(".fint").empty();
+
+                        ////console.log(data[0]);
+                        //for (var x = 0; x < data.length; x++) {
+                        //    console.log("ID: " + data[x].LogginId + " name: " + data[x].Firstname + " picture: " + data[x].Profilepic);
+                        //    var html = '<img src="' + data[x].Profilepic + '"style="height:35px;" /> <label>' + data[x].Firstname + '</label><label>' + data[x].Surname + '</label><input type="button" id="X_frind" style="margin-left:90px; margin-top:-5px " data-id="' + data[x].LogginId + '"  value="Add Friend"/><input type="hidden"  value="' + serchedname1 + '"style= margin-top:-1px ;height:28px;/> <br> <br><hr>';
+                        //    $(".fint").append(html);
+                        //}
+                        //$("#sch").hide();
+                    }
+
+                })
+
+            });
+            $(document).ready(function () {
+                $("#frdserch").click(function () {
+                    // var searchedname = $("#X_Firstname1").val();
+                    var serchedname1 = $("#X_mainloginid").val();
+                    var a = parseInt(serchedname1);
+
+                    // console.log($("#X_Firstname1").val())
+                    $.ajax({
+                        type: 'GET',
+                        dataType: 'Json',
+                        url: 'Home/serch',
+                        data: { loginid: serchedname1 },
+                        success: function (data) {
+                            //  $(".fint").empty();
+                            //  $(".fint").empty();
+                            console.log(data[0]);
+                            for (var x = 0; x < data.length; x++) {
+                                if (data[x].relation == 1) {
+                                    //  console.log("ID: " + data[x].LogginId + " name: " + data[x].Firstname + " picture: " + data[x].Profilepic);
+                                    var html = '<img src="' + data[x].FCProfilepic + '"style="height:35px;" /> <label>' + data[x].FCFirstname + '</label><label>' + data[x].FCSurname + '</label><input type="button" tyle="margin-left:90px; margin-top:-5px " data-id="' + data[x].LogginId + '"  value="UN Friend" id="btndelet"/><input type="hidden"  value="' + serchedname1 + '"style= margin-top:-1px ;height:28px;/> <br> <br><hr>';
+                                    $(".fint").append(html);
+                                }
+                                //else {
+                                //    console.log("ID: " + data[x].LogginId + " name: " + data[x].Firstname + " picture: " + data[x].Profilepic);
+                                //    var html = '<img src="' + data[x].Profilepic + '"style="height:35px;" /> <label>' + data[x].Firstname + '</label><label>' + data[x].Surname + '</label><input type="button" id="X_frind" style="margin-left:90px; margin-top:-5px " data-id="' + data[x].LogginId + '"  value="Add Friend"/><input type="hidden"  value="' + serchedname1 + '"style= margin-top:-1px ;height:28px;/>  <br> <br><hr>';
+                                //}
+                                //  $("#sch").hide();
+
+
+
+
+                            }
+                        }
+                    })
+                });
+            });
+            $(document).on('click', '#deletebtn', function () {
+                var reciverid = $("#X_mainloginid").val();
+                var senderid = $(this).data("id");
+                // $(this).prop('value', 'dlt');
+                // alert(" senderid")
+                $.ajax({
+                    type: 'GET',
+                    dataType: 'Json',
+                    url: 'Home/ufrnd',
+                    data: { X_senderid: senderid, X_reciverid: reciverid },
+                    success: function (data) {
+                        //  $(".fint").empty();
+
+                        ////console.log(data[0]);
+                        //for (var x = 0; x < data.length; x++) {
+                        //    console.log("ID: " + data[x].LogginId + " name: " + data[x].Firstname + " picture: " + data[x].Profilepic);
+                        //    var html = '<img src="' + data[x].Profilepic + '"style="height:35px;" /> <label>' + data[x].Firstname + '</label><label>' + data[x].Surname + '</label><input type="button" id="X_frind" style="margin-left:90px; margin-top:-5px " data-id="' + data[x].LogginId + '"  value="Add Friend"/><input type="hidden"  value="' + serchedname1 + '"style= margin-top:-1px ;height:28px;/> <br> <br><hr>';
+                        //    $(".fint").append(html);
+                        //}
+                        //$("#sch").hide();
+                    }
+
+                })
+
+            });
+            $(document).on('click', '#btndelet', function () {
+                var reciverid = $("#X_mainloginid").val();
+                var senderid = $(this).data("id");
+                // $(this).prop('value', 'dlt');
+                // alert(" senderid")
+                $.ajax({
+                    type: 'GET',
+                    dataType: 'Json',
+                    url: 'Home/dlt',
+                    data: { X_senderid: senderid, X_reciverid: reciverid },
+                    success: function (data) {
+                        //  $(".fint").empty();
+
+                        ////console.log(data[0]);
+                        //for (var x = 0; x < data.length; x++) {
+                        //    console.log("ID: " + data[x].LogginId + " name: " + data[x].Firstname + " picture: " + data[x].Profilepic);
+                        //    var html = '<img src="' + data[x].Profilepic + '"style="height:35px;" /> <label>' + data[x].Firstname + '</label><label>' + data[x].Surname + '</label><input type="button" id="X_frind" style="margin-left:90px; margin-top:-5px " data-id="' + data[x].LogginId + '"  value="Add Friend"/><input type="hidden"  value="' + serchedname1 + '"style= margin-top:-1px ;height:28px;/> <br> <br><hr>';
+                        //    $(".fint").append(html);
+                        //}
+                        //$("#sch").hide();
+                    }
+
+                })
+
+            });
+            (document).ready(function () {
+                $("#editing").click(function () {
+                    // alert("hhhh");
+                    $.ajax({
+                        type: 'POST',
+                        dataType: 'Json',
+                        url: 'Home/Views',
+                        data: {},
+                        success: function (data) {
+
+                            for (var x = 0; x < data.length; x++) {
+                                console.log("id:" + data[x].LogginId + "nme:" + data[x].Firstname + "snme:" + data[x].Surname);
+                                var html = '<img src="' + data[x].Profilepic + '" style="height:35px; margin-left:2px; "/> <label>' + data[x].Firstname + '</label> <label>' + data[x].Surname + '</label><br><label>' + data[x].Email + '</label><br><label>day:-' + data[x].day + '</label><br><label>Month:-' + data[x].month + '</label><br><label>Year:-' + data[x].Year + '</label><br><label>Gender:-' + data[x].Gender + '</label><input type="button" style="margin-left:15px; background-color:green" value="SAVE" id="used"/> <input type="button" value="Approve" id="btn_sus"/><br/><hr>'
+                                $(".nws").append(html);
+                            }
+                            //  $(".PF").show();
+
+                        }
+                    })
+                });
+            });
+            $(document).ready(function () {
+                $("#lnk").click(function () {
+                    var loginId = $(this).data("id");
+                    $.ajax({
+                        type: 'POST',
+                        dataType: 'Json',
+                        url: 'Home/admin_role',
+                        data: { loginId: X_id },
+                        success: function (data) {
+
+                            for (var x = 0; x < data.length; x++) {
+                                console.log("id:" + data[x].A_loginid + "nme:" + data[x].A_fname + "snme:" + data[x].A_Surname);
+                                var html = '<img src="' + data[x].A_propic + '" style="height:35px; margin-left:2px; "/> <label>' + data[x].A_fname + '</label> <label>' + data[x].A_Surname + '</label><input type="button" value="Approve" id="ae" /> <input type="text"id="DD_btn" hidden value=' + data[x].A_loginid + ' /><br/><hr>';
+                                $(".listing").append(html);
+                            }
+                            $(".listing").show();
+
+                        }
+                    })
+                });
+            });
+            $(document).ready(function () {
+                $("#postadds").click(function () {
+                    var serchedname1 = $("#X_mainloginid").val();
+                    var status1 = $("#poststatus").val();
+                    var imge1 = $(".Imgsrc").attr('src');
+                    alert(imge1);
+
+                    $("#uploding").trigger('click');
+                    // alert("dsfgh");
+                    $("#imgfeed").dialog({
+                        model: true,
+                        autoopen: false,
+                        title: "add photos/vedios",
+                        width: 510,
+                        height: 230,
+
+                    });
+                    alert("ffffff");
+                    alert(status1);
+                    //  var html = '<img src="' + imge1 + '" style="height:55px;width:35px; margin-top:3px; "  /><input type="text" /><br>';
+                    var html = '<img src="' + imge1 + '" style="height:55px;width:35px; margin-top:3px;"/><br>';
+                    $("#sch").hide();
+                    $("#imgfeed").show();
+                    $("#imgfeed").dialog('open');
+                    $(".upload").append(html);
+
+                })
+            });
+            $(document).ready(function () {
+                $("#body").ready(function () {
+                    var status = $("#Sts").val();
+                    if (status == 1) {
+                        $("#postadds").show();
+                      
+
+
+
+                    }
+
+                })
+
+            });
+            $(document).ready(function () {
+                $("#shoopi").click(function () {
+                    $("#sch").hide();
+                    $("#Blues").hide();
+                    var html = '<label>All Footwear</label><br><a href="#"id="b_lik">Been Bag</a><br><a href="#">Flats</a><br><a href="#">Heels</a><br><a href="#">Wedges</a><br><a href="#">Ballerinas</a><br><a href="#">Boots</a><br><a href="#">Pumps</a><br><a href="#">Slippers&Flip-Flops</a><br><a href="#">Sports Shoes</a><br><a href="#">Casual Shoes</a><br><a href="#">Formal Shoes</a><br><a href="#">Ethnic</a><br>';
+                    $(".f_crt").append(html);
+                })
+            });
+
+
+
+
+        </script>
+
+
+
+            </head>
+
+            <body id="body">
+@{using (Html.BeginForm("Login3", "Home", FormMethod.Post, new { enctype = "multipart/form-data" }))
+  {
+
+                <div class="container-fluied">
+                    <div class="row">
+                        <div class="col-md-12" style="background-color:Blue; height: 80px; ">
+                            <div>
+                                <input type="text" name="srchterm" class="X_Firstname1" placeholder="Search Facebook" style="margin-left:60px; margin-top:20px; width:350px; height:28px;" /><input type="submit" value="S" name="cmd1" style="height:27px; color:Silver;" class="icon-search" id="srh" />
+                                <!--<input type="text"  name="srchterm" class="serch" /> <input type="submit" value="s" name= "cmd" style="height:29px; color:Silver;"  class="icon-search" id="srh" onclick="srh_onclick()"/>!--><!--<input class="form-control" name="srchterm" placeholder="Search Facebook"  type="text" style="margin-left:60px; margin-top:20px; width:402px; height:28px;">-->
+
+                                <img src="@ViewData["profile"]" style="margin-left:400px;margin-top:10px; height: 49px;" /><input type="hidden" value="@ViewData["mainloginid"]" id="X_mainloginid" /><input type="text" value="@ViewData["status"]" id="Sts"/><label style="color:white;">@ViewData["frstname"]@ViewData["srname"]</label>
+                                @*<div class="dropdown" style=" margin-left:390px;">
+            <button class="dropbtn" style="margin-left:550px; margin-top:-30px;">Home</button>
+            <div class="dropdown-content">
+                <a href="#" id="Link_adv">Apply to  Advertiesment</a>
+                <a href="#">Log Out</a>*@
+                                <div class="dropdown">
+                                    <button class="dropbtn" id="lnk">Home</button>
+                                    <div class="dropdown-content">
+                                        <a href="#"style="text-decoration:none" id="Link_adv"></a>
+                                        <a href="#">Log Out</a>
+
+
+
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col-md-4" style="background-color:silver; width:200px; height:637px; margin-top:0px;">
+                            <img src="@ViewData["profile"]" class="Imgsrc" style="margin-left:5px; margin-top:3px; height: 37px;" /><label style="color:white;">@ViewData["frstname"]@ViewData["srname"]</label><br /><br />
+                            <img src="../../content/images/index.png" style="margin-left:5px; margin-top:3px; height:37px" /><a href="#" id="lnk"> Edit profile</a><br /><br/>
+                            <i class="glyphicon glyphicon-user" style="color:blue"></i>&nbsp; <a href="#"  id="aprovefrnd">Approve friend</a><br />
+                            <i class="glyphicon glyphicon-search" style="color:blue">&nbsp;</i> <a href="#" id="frdserch">FriendSerch</a><br />
+                            <i class="glyphicon glyphicon-list-alt"  style="color:blue">&nbsp;</i>&nbsp; <a href="#" id="newsfeed">News Feed</a><br />
+                            <i class="glyphicon glyphicon-pencil" style="color:blue">&nbsp;</i> <a href="#" id="updates">Update status</a><br />
+                            <i class="glyphicon glyphicon-pencil" style="color:blue">&nbsp;</i> <a href="#" id="lnk_edit">Edit profile</a><br />
+                            <label >Advertiesment</label><br />
+
+                            <i class="glyphicon glyphicon-signal" style="color:blue">&nbsp;</i><a href="#" id="postadds" hidden>Post and Add</a>
+                            <label>Shopping</label><br />
+                            <img src="~/content/images/download%20(1).png" style="height:30px; background-color:yellow" /><a href="#" id="shoopi">Flipkart</a>
+                            <input type="submit" name="btn_1" value="Flipkart" />
+                                                  
+                         </div>
+                    <div id="imgfeed" style="align:left;" class="upload"/>
+
+                        <input type="file" id="uploding" multiple  class="pst" style="opacity:0.0;filter:alpha(opacity=0);visibility:hidden;" accept="image/png" onchange="document.getElementById('imgs').value=this.value"/><input type="text" id="imgs" hidden />
+                    </div>
+
+
+
+
+
+                     <div class="col-md-7" style="background-color:silver; width:580px;">
+                            <!--<pre  style="width:511px;  margin-top:3px;">&nbsp;</pre><br />-->
+                         <pre id="sch" style="height:150px;"><img src="content/images/index.png" style="height:37px;" /><a href="#">update Status</a>&nbsp;&nbsp;&nbsp;&nbsp;<img src="content/images/imagess.jpg" style="height:37px;" /><a href="#" id="vedioimg">Add  Photos/Vedios </a>&nbsp;&nbsp;&nbsp;&nbsp;<img src="../../Content/index.png" style="height:37px;" />Writes Notes<br />
+                         <img src="@ViewData["profile"]" style="height:37px;" /><input type="text" id="poststatus" style="height:30px; margin-left:3px;" placeholder="What's on your maint?" />
+                         <input type="submit" id="btnpost" value="Post" style="margin-left:220px; background-color:green; " /></pre>
+
+                    <div class="load"/></div>
+                        <div style="background-color:white;margin-top:4px;" class="nws" hidden ></div>
+                          <div style="background-color:white; margin-top:4px;"class="fint" ></div>
+                    <div class="f_crt"></div>
+                    <div class="f_crt1"  ></div>
+                    </div>
+
+                        <div class="col-md-1" id="Blues" style="background-color:Silver; height:693px; width:540px ;">
+                            <pre style="width:420px;"> Your ads
+                            <div style="background-color:Blue; height:470px; width:300px; margin-left:50px;"></div></pre>
+                        </div>
+                   // </div>
+
+ }}
+            </body>
+   
+        </html>
+
+       

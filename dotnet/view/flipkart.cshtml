@@ -1,0 +1,143 @@
+﻿@{
+    ViewBag.Title = "flipkart";
+}
+
+<h2></h2>
+<html>
+<head>
+    <title></title>
+
+    
+    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  
+ 
+    <link href="~/content/stylesheet/StyleSheet3.css" rel="stylesheet" />
+    <script language="javascript" type="text/javascript">
+
+        $(document).ready(function () {
+            $("#IMG").click(function () {
+                $("#div1").hide();
+                $("#div2").hide();
+                $("#div3").hide();
+         
+                // var serchedname1 = $("#X_mainloginid").val();
+                //  var a = parseInt(serchedname1);
+
+                $.ajax({
+                    type: 'GET',
+                    dataType: 'Json',
+                    url: 'dt_cntnt',
+                    data: {},
+                    success: function (data) {
+
+
+                        for (var x = 0; x < data.length; x++) {
+
+                            console.log("ID: " + data[x].id + " name: " + data[x].imges);
+
+
+                            var html = '<img src="' + data[x].imges + '"/>' + '<h1 align="center" style="margin-top:-200px;">Comfort Bean Bages XL Bean Bag Cover for kids<br>(pink)</h1><br><br><br><br><hr class="hr5"><h2 align="center" style="margin-top:-60px;">Rs:499</h2><br><br><hr class="hr3"><br><hr class="hr4"><input type="submit" value="Buy Now" id="btn_buy" style="margin-left:650px; background-color:light-green;font-color:white"/>';
+                            $(".alot").append(html);
+
+
+
+                          
+                            
+                        }
+                    }
+                })
+            })
+        });
+        $(document).on('click', '#btn_buy', function () {
+            $("#D1").hide();
+        
+            //var loginId = $(this).data("id");
+        
+            $.ajax({
+                type: 'GET',
+                dataType: 'Json',
+                url: 'dt_cntnt',
+               // data: { loginId: X_Loginid },
+                success: function (data) {
+                    for (var x = 0; x < data.length; x++) {
+
+                        console.log("ID: " + data[x].id + " name: " + data[x].imges);
+                        var html = ' <div style="background-color:#48C9B0; height:60px; magin-top:3px;">ORDER SUMMERY 1 item</div><label style="margin-left:80px;">ITEM</label><label style="margin-left:180px;">Qty</label><label style="margin-left:190px;">PRICE</label><label style="margin-left:198px">DELIVERY DETAILS</label ><label style="margin-left:208px;">SUB TOTAL</label><hr class="hr6"><br><div><img src="' + data[x].imges + '" style="height:110px;margin-left:3px;"/></div><p style="margin-left:105px; margin-top:-110px;">Been Bag<br>Comfort Bean Bages<br>XL Been Bag<br> for kids<br> (Pink)<p style="margin-left:290px; margin-top:-128px;">1</p><p style="margin-left:490px; margin-top:-19px">$499/-</p><p style="margin-left:640px;margin-top:-25px;">by MON,19 Jun@Rs:-100/-</p><p style="margin-left:1015px; margin-top:-5px;">RS 550</p><br><br><hr class="hr7"><br><br><br><input type="submit" id="btn_odr"  value="PLACE ORDER" style="background-color:#FF5733;width:200px; margin-left:5px;"><label style="margin-left:610px;">Amoubt Payable:<hr class="hr8"><h3 style="margin-left:15px;">RS.599</h3></label>';
+                        $(".alot1").append(html);
+
+                    }
+                    }
+            })
+        });
+        $(document).on('click', '#btn_odr', function () {
+          //  var loginId = $(this).data("id");
+          
+
+            $.ajax({
+                type: 'GET',
+                dataType: 'Json',
+                url: 'dt_cntnt',
+                data: {  },
+                success: function (data) {
+
+                }
+            })
+        });
+
+    </script>
+
+
+
+        </head>
+        <body id="bdy1">
+
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-md-12" style="background-color:#3b5998; height:60px;">
+                    <input type="text" style="width:320px; margin-top:12px; margin-left:3px;" /> <i class="glyphicon glyphicon-search" style="color:white"></i>
+                    </div>
+                </div>
+            </div>
+           <div class="container">
+               <div class="row">
+                   <div class="col-md-4" id="div1">
+                       <input type="text" style="margin-left:105px; margin-top:3px;" /><input type="submit" /><hr class="hr" />
+
+                   </div>
+
+                </div>
+            </div>
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-md-7" id="div2">
+                        @*<label style="margin-top:-10px;">BROWSE</label>*@
+                        <a href="Browse" id="buy_btn"></a>
+                        <img src="@ViewData["imges"]" id="IMG"  style="margin-left:113px" /><br />
+                        <p  id="xl_bag"style="margin-left:200px; ">comfert beenbag XL beenbag</p><br />
+                        <p  id="f_bag"style="margin-left:200px; margin-top:-25px;">without fillings</p><hr class="hr1" />
+                        <label style="margin-left: 220px; margin-top: -15px; ">RS.499</label><hr class="hr1" />
+                      
+
+                    </div>
+                </div>
+            </div>
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-1" id="div3">
+                    @*<img src="~/propic2/images%20(26).jpg"  style="margin-top:-379px; margin-left:320px;"/><br />*@
+
+                        <img src="~/propic2/images%20(26).png" style="margin-top:-379px; margin-left:320px;" />
+                        <p style="margin-top:-139px; margin-left:340px;">KidsBeenbag</p><br />
+                        <p style="margin-top:-28px; margin-left:345px;">  lightweight</p><hr class="hr2" />
+                        <label style="margin-left:328px; margin-top:-12px;">Rs.500</label><hr class="hr2" />
+                      
+
+                    </div>
+                </div>
+            </div>
+            <div class="alot" id="D1"></div>
+            <div class="alot1"></div>
+        </body>
+        </html>

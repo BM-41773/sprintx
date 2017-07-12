@@ -1,0 +1,81 @@
+﻿.hr
+
+{
+    color: black;
+background-color: black;
+height: 2px;
+width:1225px;
+}
+.hr1
+
+{
+    color: black;
+background-color: black;
+height: 2px;
+width:190px;
+margin-left:210px;
+}
+.hr2
+
+{
+    color: black;
+background-color: black;
+height: 2px;
+width:190px;
+margin-left:323px;
+}
+.hr3
+{
+   
+ background-color: gray;
+height: 2px;
+width:390px;
+
+}
+.hr4
+{
+   
+ background-color: gray;
+height: 2px;
+width:390px;
+margin-top:-10px;
+
+}
+.hr5
+{
+   
+ background-color: gray;
+height: 1px;
+width:1200px;
+margin-top:-50px;
+margin-left:10px
+
+}
+.hr6
+{
+   
+ background-color: black;
+height: 6px;
+width:1800px;
+
+
+}
+.hr7
+{
+   
+ background-color: black;
+height: 6px;
+width:1800px;
+margin-bottom:59px;
+
+
+}
+.hr8
+
+{
+    color: gray;
+background-color: gray;
+height: 2px;
+width:200px;
+margin-left:15px;
+}
